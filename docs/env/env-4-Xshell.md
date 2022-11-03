@@ -1,7 +1,7 @@
 # 도커 환경 구축 - XShell
 XShell을 설치하고 VM에 SSH 원격 접속을 시도합니다.
 
-### XShell 설치
+### XShell 다운로드
 - https://www.netsarang.com/ko/xshell-download/ 에 접속해 XShell을 다운로드 합니다.
 <br />
 
