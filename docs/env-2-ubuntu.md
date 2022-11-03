@@ -38,6 +38,7 @@ VM에 Ubuntu 20.04 LTS 버전을 설치하고, 초기 설정을 진행합니다.
 >   - 암호 선택: work   
 >   - [로그인할 때 암호입력] 체크   
 > - 설치 완료 후 재부팅합니다.   
+<br />
 
 ※ 처음 우분투 설치 시 버튼이 안보이는 현상   
 - 설치 종료 > 임시 작업 환경에서 setting > displays > resolution 변경 > 바탕화면의 Install Ubuntu 실행   
