@@ -74,8 +74,8 @@ VM에 Cent OS 7 을 설치하고, 초기 설정을 진행합니다.
 > - systemctl disable libvirtd (다음 부팅 시 실행 안함)   
 > <br />
 >
-> 네트워크 구성
-> ※ CentOS는 Ubuntu와 다르게 설치 시 네트워크를 설정했기 때문에 별도의 설정이 필요없습니다.   
+> 네트워크 구성   
+> ※ CentOS는 Ubuntu와 다르게 설치 시 네트워크를 설정했기 때문에 별도의 설정이 필요 없습니다.   
 > <br />
 > host 정보 추가   
 > - 터미널 오픈
@@ -95,7 +95,7 @@ VM에 Cent OS 7 을 설치하고, 초기 설정을 진행합니다.
 <br />
 
 ### SSH Server 및 기타 툴 설치
-- CentOS는 Ubuntu와 다르게 설치 시 openssh-server가 설치되어있고, 방화벽도 열려있기 때문에 별도의 설정이 필요없습니다.   
+- CentOS는 Ubuntu와 다르게 설치 시 openssh-server가 설치되어있고, 방화벽도 열려있기 때문에 별도의 설정이 필요 없습니다.   
 > tree 설치
 > - 터미널 오픈
 > - yum install -y tree
