@@ -51,7 +51,7 @@
 > 
 > 서비스 데몬 시작
 > - systemctl start docker
-> - systemctl enable docker
+> - systemctl enable docker (부팅 시 도커 데몬 실행)
 > <br />
 > 
 > 도커 설치 확인   
