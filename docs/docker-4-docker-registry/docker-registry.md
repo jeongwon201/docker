@@ -83,5 +83,5 @@ Private Registry에 잘 저장되었는지 확인합니다.
 
 > - cd 컨테이너이름/_data/docker/registry/v2/repositories
 > - ls
-
+<br />
 httpd 컨테이너 이미지가 잘 업로드된 것을 확인할 수 있습니다.
