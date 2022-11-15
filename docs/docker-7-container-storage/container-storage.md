@@ -212,3 +212,14 @@ Nginx 서버에 접속합니다.
 > ```
 <br />
 
+컨테이너 볼륨의 HTML 파일을 제공하는 서버 컨테이너를 실행합니다.
+> 컨테이너 실행
+> ```
+> docker run -d --name web -v /webdata:/usr/share/nginx/html:ro -p 80:80 nginx:1.14
+> ```
+
+서버 컨테이너 접속
+> Nginx 서버 접속
+> ```
+> curl localhost:80
+> ``` 
