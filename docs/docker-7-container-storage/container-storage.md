@@ -25,6 +25,8 @@ Mysql 컨테이너를 실행합니다.
 > docker run -d --name db -v /dbdata:/var/lib/mysql -e MYSQL_PASSWORD=pass mysql:latest
 > ```
 > - ``` -v /dbdata:/var/lib/mysql ```  볼륨 마운트 시 사용하는 옵션입니다.
+> - ``` /dbdata: ``` 는 도커 호스트의 경로입니다.   
+>  이를 생략하게 되면 ``` /var/lib/docker/volumes/UUID/_data ``` 경로로 볼륨 마운트를 하게 됩니다.
 <br />
 
 컨테이너에 접속하여 MySQL Database를 생성합니다.
@@ -55,6 +57,34 @@ Database가 잘 생성되었는지 확인합니다.
 > ```
 <br />
 
+MySQL과 컨테이너의 접속을 종료합니다.
+> ``` exit ``` 명령어를 두 번 실행하여 우분투로 돌아옵니다.
+<br />
+
+컨테이너에서 저장한 데이터가 도커 호스트에 영구 저장되었는지 확인합니다.
+> 영구 저장 확인
+> ```
+> cd /dadata
+> ls
+> ```
+> - jeongwon 파일이 생성되었음을 확인합니다.
+<br />
+
+컨테이너를 지우고 데이터가 보존되었는지 확인합니다.
+컨테이너를 삭제합니다.
+> 컨테이너 삭제
+> ```
+> docker rm -f db
+> ```
+<br />
+
+삭제된 컨테이너의 데이터가 보존되었는지 확인합니다.
+> 영구 저장 확인
+> ```
+> cd /dadata
+> ls
+> ```
+<br />
 
 웹데이터 readonly 서비스로 지원하기
 컨테이너 간 데이터 공유하기
