@@ -27,6 +27,34 @@ Mysql 컨테이너를 실행합니다.
 > - ``` -v /dbdata:/var/lib/mysql ```  볼륨 마운트 시 사용하는 옵션입니다.
 <br />
 
+컨테이너에 접속하여 MySQL Database를 생성합니다.
+> 컨테이너 접속
+> ```
+> docker exec -t db /bin/bash
+> ```
+<br />
+
+MySQL에 루트 계정으로 접속합니다.
+> MySQL 루트 로그인
+> ```
+> mysql -u root -ppass
+> ```
+<br />
+
+Database를 생성합니다.
+> Database 생성
+> ```
+> create database jeongwon;
+> ```
+<br />
+
+Database가 잘 생성되었는지 확인합니다.
+> Database 확인
+> ```
+> show databases;
+> ```
+<br />
+
 
 웹데이터 readonly 서비스로 지원하기
 컨테이너 간 데이터 공유하기
