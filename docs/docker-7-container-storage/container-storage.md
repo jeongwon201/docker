@@ -90,7 +90,7 @@ MySQL과 컨테이너의 접속을 종료합니다.
 > ```
 <br />
 
-## 2. 웹데이터 readonly 서비스로 컨테이너에 지원하기
+## 2. 웹 데이터 readonly 서비스로 컨테이너에 지원하기
 작업 폴더를 생성합니다.
 > 작업 폴더 생성
 > ```
@@ -141,4 +141,74 @@ Nginx 서버에 접속합니다.
 > ```
 <br />
 
+다음 학습을 위해 컨테이너와 컨테이너 볼륨을 삭제합니다.
+> 컨테이너 삭제
+> ```
+> docker rm -f web
+> ```
+> <br />
+>
+> 컨테이너 볼륨 삭제
+> ```
+> rm -rf /webdata
+> ```
+<br />
+
 ## 3. 컨테이너 간 데이터 공유하기
+- 10초 마다 우분투 파일 시스템의 용량을 확인하는 웹 서비스를 만들어봅니다.
+- 이는 두 컨테이너가 하나의 볼륨을 공유하는 방식입니다.
+ - 10초 마다 파일 시스템의 용량을 확인하여 볼륨 내부의 HTML 파일을 동기화하는 컨테이너
+ - 클라이언트에게 볼륨 내부의 HTML 파일을 서비스하는 서버 컨테이너
+<br />
+
+작업 폴더를 생성합니다.
+> 작업 폴더 생성
+> ```
+> mkdir lab8
+> cd lab8
+> ```
+<br />
+
+10초 마다 파일 시스템의 용량을 확인하는 쉘 스크립트 생성합니다.
+> 쉘 스크립트 생성
+> ```
+> vi df.sh
+> ```
+> > df.sh
+> > ```
+> > #!/bin/bash
+> > mkdir -p /webdata
+> > while true
+> > do
+> >  df -h / > /webdata/index.html
+> >  sleep 10
+> > done
+> > ```
+<br />
+
+컨테이너 이미지를 빌드할 Dockerfile을 생성합니다.
+> Dockerfile 생성
+> ```
+> vi Dockerfile
+> ```
+> > ```
+> > FROM ubuntu:18.04
+> > ADD df.sh /bin/df.sh
+> > RUN chmod +x /bin/df.sh
+> > ENTRYPOINT ["/bin/df.sh"]
+<br />
+
+컨테이너 이미지를 빌드합니다.
+> 컨테이너 이미지 빌드
+> ```
+> docker build -t DOCKERID/df:latest .
+> ```
+<br />
+
+컨테이너 이미지를 볼륨 마운트하여 실행합니다.
+> 컨테이너 실행
+> ```
+> docker run -d -v /webdata:/webdata --name df jeongwon/df:latest
+> ```
+<br />
+
