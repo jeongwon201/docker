@@ -90,5 +90,55 @@ MySQL과 컨테이너의 접속을 종료합니다.
 > ```
 <br />
 
-웹데이터 readonly 서비스로 지원하기
-컨테이너 간 데이터 공유하기
+## 2. 웹데이터 readonly 서비스로 컨테이너에 지원하기
+작업 폴더를 생성합니다.
+> 작업 폴더 생성
+> ```
+> mkdir /webdata
+> cd /webdata
+> ```
+<br />
+
+간단한 HTML 파일을 생성합니다.
+> HTML 파일 생성
+> ```
+> echo "<h1>Jeongwon's Docker Practice</h1>" > index.html
+> ```
+<br />
+
+웹 서버 컨테이너를 실행합니다.
+> 컨테이너 실행
+> ```
+> docker run -d --name web -p 80:80 -v /webdata:/usr/share/nginx/html:ro nginx:1.14
+> ```
+<br />
+
+Nginx 서버에 접속합니다.
+> 서버 접속
+> ```
+> curl localhost:80
+> ```
+<br />
+
+볼륨에 있는 index.html을 수정합니다.
+> 볼륨으로 이동
+> ```
+> cd /webdata
+> ```
+> <br />
+>
+> HTML 파일 수정
+> ```
+> vi index.html
+> <h1>Jeongwon's Docker Practice - Changed</h1>
+> ```
+<br />
+
+Nginx 서버에 접속합니다.
+> 서버 접속
+> ```
+> curl localhost:80
+> ```
+<br />
+
+## 3. 컨테이너 간 데이터 공유하기
