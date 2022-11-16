@@ -24,7 +24,7 @@ docker0는 네트워크 브릿지를 통해 컨테이너가 외부 통신을 할
 <br />
 
 
-## 1. 컨테이너 네트워크 사용하기
+## 1. 컨테이너 네트워크(docker0) 사용하기
 docker0 인터페이스를 확인합니다.
 > docker0 인터페이스 확인
 > ```
@@ -33,7 +33,67 @@ docker0 인터페이스를 확인합니다.
 > ```
 > - ```ip addr``` : docker0 인터페이스를 확인할 수 있다.
 > - ```brctl show``` : docker0 가 bridge 인터페이스임을 확인할 수 있다.
+<br />
 
-컨테이너 포트 외부로 노출하기
+컨테이너 c1 을 실행합니다.
+> 컨테이너 c1 실행
+> ```
+> docker run --name c1 -it busybox
+> ip addr
+> ```
+> - docker0 인터페이스는 ip를 순차적으로 부여하기 때문에 ```172.17.0.2``` IP 주소가 할당된다.
+<br />
+
+컨테이너 c2 을 실행합니다.
+> 컨테이너 c2 실행
+> ```
+> docker run --name c2 -it busybox
+> ip addr
+> ```
+> - docker0 인터페이스는 ip를 순차적으로 부여하기 때문에 ```172.17.0.3``` IP 주소가 할당된다.
+<br />
+
+컨테이너 web1 을 실행합니다.
+> 컨테이너 web1 실행
+> ```
+> docker run -d -p 80:80 --name web1 nginx
+> curl 172.17.0.4
+> ```
+> - docker0 인터페이스는 ip를 순차적으로 부여하기 때문에 ```172.17.0.4``` IP 주소가 할당된다.
+<br />
+
+다음 학습을 위해 컨테이너를 삭제합니다.
+> 컨테이너 삭제
+> ```
+> docker rm -f c1
+> docker rm -f c2
+> docker rm -f web1
+> ```
+<br />
+
+
+## 2. 컨테이너 포트 외부로 노출하기
+포트 포워딩( ```-p``` )
+> ```
+> docker run -d -p 80:80 --name web1 nginx
+> curl localhost:80
+> 
+> docker run -d -p 80 --name web2 nginx
+> docker ps
+> curl localhost:[포트]
+>
+> docker run -d -P --name web3 nginx
+> docker ps
+> curl localhost:[포트]
+> ```
+> - ```-p 80:80```: 호스트의 80 포트를 80 포트로 포워딩합니다.
+> - ```-p 80```: 호스트 포트를 생략하게되면 랜덤한 포트를 할당받습니다.
+> - ```-P```: 랜덤 포트를 할당하여 Dockerfile 에 정의된 포트 번호로 포워딩합니다.
+<br />
+
+
+
+
+
 user-defined 네트워크 구성하기
 컨테이너 간 통신: wordpress, mysql 컨테이너 서비스 구축하기
