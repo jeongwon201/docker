@@ -167,7 +167,7 @@ docker-compose로 생성된 컨테이너를 삭제합니다
 > - ```docker compose stop``` 명령어를 사용하여 컨테이너를 삭제하지않고 중지만 하는 것도 가능합니다.
 <br/>
 
-**※ ```scale``` 명령어
+### ※ ```scale``` 명령어
 - ```scale``` 명령어를 사용하여 컨테이너를 스케일 업 또는 스케일 다운 할 수 있습니다.
 - ex) ```docker compose scale 3```, ```docker compose scale 1```
 
