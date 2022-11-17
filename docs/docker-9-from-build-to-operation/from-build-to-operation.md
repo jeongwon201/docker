@@ -173,4 +173,5 @@ docker-compose로 생성된 컨테이너를 삭제합니다
 
 <br />
 
-MySQL 데이터베이스를 사용하는 Wordpress 운영하기
+
+### 3. MySQL 데이터베이스를 사용하는 Wordpress 운영하기
