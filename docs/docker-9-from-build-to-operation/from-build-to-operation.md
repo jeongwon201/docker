@@ -32,9 +32,113 @@ docker-compose를 설치합니다.
 <br />
 
 
+## 2. 컨테이너 빌드에서 운영까지
+서비스 디렉토리를 생성합니다.
+> 디렉토리 생성
+> ```
+> mkdir composetest
+> cd composetest
+> ```
+<br />
+
+서비스 애플리케이션 app.py 파일을 생성합니다.
+> app.py 생성
+> ```
+> vi app.py
+> ```
+> <br />
+> 
+> app.py
+> ```
+> import time
+>
+> import redis
+> from flask import Flask
+> 
+> app = Flask(__name__)
+> cache = redis.Redis(host='redis', port=6379)
+> 
+> def get_hit_count():
+>    retries = 5
+>    while True:
+>        try:
+>            return cache.incr('hits')
+>        except redis.exceptions.ConnectionError as exc:
+>            if retries == 0:
+>                raise exc
+>            retries -= 1
+>            time.sleep(0.5)
+>
+> @app.route('/')
+> def hello():
+>     count = get_hit_count()
+>     return 'Hello World! I have been seen {} times.\n'.format(count)
+> ```
+<br />
+
+라이브러리 설치를 위한 requirements.txt 파일을 생성합니다
+> requirements.txt 생성
+> ```
+> vi requirements.txt
+> ```
+> <br />
+> requirements.txt
+> ```
+> flask
+> redis
+> ```
+<br />
+
+Dockerfile 생성합니다.
+> Dockerfile 생성
+> ```
+> vi Dockerfile
+> ```
+> <br />
+>
+> Dockerfile
+> ```
+> # syntax=docker/dockerfile:1
+> FROM python:3.7-alpine
+> WORKDIR /code
+> ENV FLASK_APP=app.py
+> ENV FLASK_RUN_HOST=0.0.0.0
+> RUN apk add --no-cache gcc musl-dev linux-headers
+> COPY requirements.txt requirements.txt
+> RUN pip install -r requirements.txt
+> EXPOSE 5000
+> COPY . .
+> CMD ["flask", "run"]
+> ```
+<br />
+
+docker-compose.yml 파일을 생성합니다.
+> docker-compose.yml 생성
+> ```
+> vi docker-compose.yml
+> ```
+> <br />
+>
+> docker-compose.yml
+> ```
+> version: "3.9"
+> services:
+>   web:
+>     build: .
+>     ports:
+>       - "8000:5000"
+>   redis:
+>     image: "redis:alpine"
+> ```
+<br />
+
+docker-compose 명령어
 
 
 
 
-컨테이너 빌드에서 운영까지
+
+
+
+
 MySQL 데이터베이스를 사용하는 Wordpress 운영하기
