@@ -33,6 +33,9 @@ docker-compose를 설치합니다.
 
 
 ## 2. 컨테이너 빌드에서 운영까지
+- 웹 사이트에 접속할 때마다 방문 횟수를 출력하는 애플리케이션을 운영합니다.
+<br />
+
 서비스 디렉토리를 생성합니다.
 > 디렉토리 생성
 > ```
@@ -127,18 +130,37 @@ docker-compose.yml 파일을 생성합니다.
 >     build: .
 >     ports:
 >       - "8000:5000"
+>     volumes:
+>       - .:/code
+>     environment:
+>       FLASK_DEBUG: True
 >   redis:
 >     image: "redis:alpine"
 > ```
 <br />
 
-docker-compose 명령어
+docker-compose로 통합 실행합니다.
+> docker-compose 통합 실행
+> ```
+> docker compose up
+> ```
 
+실행된 애플리케이션에 접속합니다.
+> XShell 세션 복제
+> <br />
+>
+> 접속
+> ```
+> curl 172.18.0.3:5000
+> ```
+> - docker compose up 커맨드 실행 시 할당받은 IP가 출력됩니다. 출력된 IP로 접속합니다.
+<br />
 
-
-
-
-
-
+docker-compose로 생성된 컨테이너를 삭제합니다
+> docker-compose로 생성된 컨테이너 삭제
+> ```
+> docker compose down
+> ```
+<br />
 
 MySQL 데이터베이스를 사용하는 Wordpress 운영하기
