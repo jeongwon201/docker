@@ -172,6 +172,3 @@ docker-compose로 생성된 컨테이너를 삭제합니다
 - ex) ```docker compose scale 3```, ```docker compose scale 1```
 
 <br />
-
-
-### 3. MySQL 데이터베이스를 사용하는 Wordpress 운영하기
