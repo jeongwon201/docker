@@ -144,6 +144,8 @@ docker-compose로 통합 실행합니다.
 > ```
 > docker compose up
 > ```
+> - -d 옵션으로 백그라운드 실행을 할 수 있습니다.
+<br />
 
 실행된 애플리케이션에 접속합니다.
 > XShell 세션 복제
@@ -161,6 +163,14 @@ docker-compose로 생성된 컨테이너를 삭제합니다
 > ```
 > docker compose down
 > ```
+> - ```--volumes```: 볼륨까지 삭제하는 옵션입니다.
+> - ```docker compose stop``` 명령어를 사용하여 컨테이너를 삭제하지않고 중지만 하는 것도 가능합니다.
+<br/>
+
+**※ ```scale``` 명령어
+- ```scale``` 명령어를 사용하여 컨테이너를 스케일 업 또는 스케일 다운 할 수 있습니다.
+- ex) ```docker compose scale 3```, ```docker compose scale 1```
+
 <br />
 
 MySQL 데이터베이스를 사용하는 Wordpress 운영하기
