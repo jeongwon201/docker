@@ -4,7 +4,7 @@
 <br />
 <h3 align="left">도커 유튜브 강의를 참고하면서 정리한 학습 자료입니다.</h3>
 
-참고 자료 : https://www.youtube.com/playlist?list=PLApuRlvrZKogb78kKq1wRvrjg1VMwYrvi
+유튜브 강의 링크 : <a href="https://www.youtube.com/playlist?list=PLApuRlvrZKogb78kKq1wRvrjg1VMwYrvi">[따배도] 도커 시리즈</a>
 <br />
 <br />
 <br />
