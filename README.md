@@ -1,6 +1,8 @@
 # Docker | 도커 정리
 
-도커 유튜브 강의를 참고하면서 정리한 학습 자료입니다.  
+<img align="right" src="https://github.com/jeongwon201/docker/assets/81132541/3b45ffbf-0023-4714-91b8-7eb1a87f5c25" width="200px"/>
+<br />
+<h3 align="left">도커 유튜브 강의를 참고하면서 정리한 학습 자료입니다.</h3>
 
 참고 자료 : https://www.youtube.com/playlist?list=PLApuRlvrZKogb78kKq1wRvrjg1VMwYrvi
 <br />
